@@ -1,21 +1,34 @@
 class UsersController < ApplicationController
 
-  def create 
+  # def create 
+  #   @user = User.new(user_params)
+  #   if @user.save 
+  #     token = encode_token(user_id: @user.id)
+  #      UserMailer.welcome_email(@user, token).deliver_now
+  #      # SendWelcomeEmailJob.perform_in(10.seconds, [@user.id, token]) 
+  #     render json: { token: token, message: 'User created successfully' }, status: :created
+  #   else 
+  #     render json: { error: @user.errors.full_messages }, status: :unprocessable_entity
+  #   end
+  # end
+
+
+  def create
     @user = User.new(user_params)
-
-    if @user.save 
+    if @user.save
       token = encode_token(user_id: @user.id)
-      SendWelcomeEmailJob.perform_in(10.seconds, [@user.id, token]) 
+      # Enqueue the job to send welcome email asynchronously
+      SendWelcomeEmailJob.perform_in(10.seconds, [@user.id, token])
       render json: { token: token, message: 'User created successfully' }, status: :created
-    else 
-      render json: { error: @user.errors.full_messages }, status: :unprocessable_entity
-    end
-  end
+    else
+     render json: { error: @user.errors.full_messages }, status: :unprocessable_entity
+   end
+ end
 
-  def show
+ def show
    @user = User.find(params[:id])
-   render json: @user
-  end
+   render json: @user, methods: :image_url
+ end
 
  def edit
    @user = User.find(params[:id])
@@ -34,7 +47,7 @@ class UsersController < ApplicationController
   private 
 
   def user_params 
-   params.require(:user).permit(:user_name, :email, :password_digest)
+   params.require(:user).permit(:user_name, :email, :password_digest, :image)
   end 
 
   def encode_token(payload)

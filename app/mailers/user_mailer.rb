@@ -3,6 +3,6 @@ class UserMailer < ApplicationMailer
     @user = user
     @token = token
      @user_id = @user.id
-    mail(to: @user.email, subject: "Welcome to Sign Up")
+    mail(to: 'epvishwas123@gmail.com', subject: "Welcome to Sign Up")
   end
 end

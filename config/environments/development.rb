@@ -55,6 +55,8 @@ Rails.application.configure do
 
   # Highlight code that enqueued background job in logs.
   config.active_job.verbose_enqueue_logs = true
+  config.active_storage.service = :local
+  config.active_storage.resolve_model_to_route = :rails_storage_redirect
 
 
   # Raises error for missing translations.
@@ -72,17 +74,14 @@ Rails.application.configure do
   Rails.application.routes.default_url_options[:host] = 'localhost:3000'
 
   # config.action_mailer.delivery_method = :letter_opener
-  config.action_mailer.perform_deliveries = true
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-   address:         'smtp.gmail.com',
-   port:            587,
-   domain:          'example.com',
-   user_name:       'epvishwas123@gmail.com',
-   password:        'vqza wbmq ospi rjpr',
-   authentication:  'plain',
-   enable_starttls: true
- }
-
-
+    address:         'smtp.gmail.com',
+    port:            587,
+    domain:          'example.com',
+    user_name:       'epvishwas123@gmail.com',
+    password:        'qpiw cydm xunx qaao',
+    authentication:  'plain',
+    enable_starttls: true
+  }
 end
