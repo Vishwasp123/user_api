@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Welcome to Sign Up</title>
+</head>
+<body>
+  <h3>Welcome <%= @user.email %>!</h3>
+  <p>Thank you for signing up to our application.</p>
+ <%= link_to 'View Profile', user_url(@user_id, host: 'localhost:3000') %>
+ <%= link_to 'Update Details', edit_user_url(@user, token: @token, host: 'localhost:3000') %>
+
+</body>
+</html>
