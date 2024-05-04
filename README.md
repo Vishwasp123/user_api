@@ -22,3 +22,6 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+follow :- https://blog.dennisokeeffe.com/blog/2022-03-04-getting-started-with-sidekiq-in-rails-7
+
+user sideq email send after create user 10 seconds 
